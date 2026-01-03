@@ -1,0 +1,6 @@
+@technical_test_sigma_HostAddress = http://localhost:5034
+
+GET {{technical_test_sigma_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
