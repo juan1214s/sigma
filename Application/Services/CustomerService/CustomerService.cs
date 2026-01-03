@@ -1,5 +1,6 @@
 ﻿using technical_test_sigma.Application.Interfaces.Customer;
 using technical_test_sigma.Domain.Entities;
+using technical_test_sigma.DTO.CrmDto;
 using technical_test_sigma.DTO.CustomerDto;
 
 namespace technical_test_sigma.Application.Services.CustomerService
@@ -7,10 +8,12 @@ namespace technical_test_sigma.Application.Services.CustomerService
     public class CustomerService : ICustomerService
     {
         private readonly ICustomerRepository _customerRepository;
+        private readonly ICrmService _crmService;
 
-        public CustomerService(ICustomerRepository customerRepository)
+        public CustomerService(ICustomerRepository customerRepository, ICrmService crmService)
         {
             _customerRepository = customerRepository;
+            _crmService = crmService;
         }
 
         public async Task<Guid> CreateCustomerAsync(CustomerCreateDto dto)
@@ -44,6 +47,14 @@ namespace technical_test_sigma.Application.Services.CustomerService
             };
 
             await _customerRepository.AddAsync(customer);
+
+            await _crmService.CreateOrUpdateCustomerAsync(new CrmCustomerDto
+            {
+                CustomerId = customer.CustomerId,
+                Name = customer.Name,
+                Email = customer.Email,
+                TotalPaid = dto.Pay.Amount
+            });
             return customer.CustomerId;
         }
 

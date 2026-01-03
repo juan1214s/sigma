@@ -13,6 +13,8 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(buil
 //Inyeccion de dependencias
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
+builder.Services.AddHttpClient<ICrmService, HubSpotCrmService>();
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
