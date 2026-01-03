@@ -12,10 +12,11 @@ public class HubSpotCrmService : ICrmService
     public HubSpotCrmService(HttpClient httpClient, IConfiguration config)
     {
         _httpClient = httpClient;
-        _baseUrl = config["HubSpot:BaseUrl"];
+        _baseUrl = Environment.GetEnvironmentVariable("HUBSPOT_BASE_URL");
 
+        var token = Environment.GetEnvironmentVariable("HUBSPOT_ACCESS_TOKEN");
         _httpClient.DefaultRequestHeaders.Authorization =
-            new AuthenticationHeaderValue("Bearer", config["HubSpot:AccessToken"]);
+            new AuthenticationHeaderValue("Bearer", token);
     }
 
     public async Task CreateOrUpdateCustomerAsync(CrmCustomerDto dto)

@@ -3,6 +3,10 @@ using technical_test_sigma.Application.Interfaces.Customer;
 using technical_test_sigma.Application.Services.CustomerService;
 using technical_test_sigma.Infrastructure.Data;
 using technical_test_sigma.Infrastructure.Repositories.Customers;
+using DotNetEnv;
+
+// Carga las variables desde el archivo .env
+Env.Load();
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +19,8 @@ builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddHttpClient<ICrmService, HubSpotCrmService>();
 
+var hubspotBaseUrl = Environment.GetEnvironmentVariable("HUBSPOT_BASE_URL");
+var hubspotToken = Environment.GetEnvironmentVariable("HUBSPOT_ACCESS_TOKEN");
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
