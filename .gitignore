@@ -1,4 +1,4 @@
-# Archivos de Visual Studio
+# Visual Studio
 .vs/
 bin/
 obj/
@@ -6,4 +6,17 @@ obj/
 *.suo
 *.cache
 *.log
+
+# Environment variables
 .env
+
+# ASP.NET
+appsettings.Development.json
+
+# Node / Angular (si aplica)
+node_modules/
+dist/
+
+# OS
+.DS_Store
+Thumbs.db
