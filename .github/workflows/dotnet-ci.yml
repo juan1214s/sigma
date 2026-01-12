@@ -1,0 +1,29 @@
+name: .NET CI
+
+on:
+  push:
+      branches: [ main ]
+jobs: 
+    build:
+        runs-on: ubuntu-latest
+
+        steps: 
+          - name: Checkout del repositorio
+            uses: actions/checkout@v6
+            
+          - name: Setup .Net 
+            uses: actions/setup-dotnet@v5
+            with: 
+               dotnet-version: '8.0.x'
+
+          - name: Restaura dependencias
+            run: dotnet restore
+
+          - name: Build del proyecto
+            run: dotnet build --no-restore --configuration Release
+
+          - name: Ejecutar tests (Si existe)
+            run: dotnet test --no-build --verbosity normal
+          
+        
+        
