@@ -83,5 +83,6 @@ namespace technical_test_sigma.Application.Services.CustomerService
             customer.IsActive = isActive;
             await _customerRepository.UpdateAsync(customer);
         }
+
     }
 }

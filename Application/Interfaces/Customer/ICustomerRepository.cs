@@ -7,5 +7,6 @@ namespace technical_test_sigma.Application.Interfaces.Customer
         Task AddAsync(CustomerEntity customer);
         Task<CustomerEntity> GetByIdAsync(Guid id);
         Task UpdateAsync(CustomerEntity customer);
+        
     }
 }

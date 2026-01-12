@@ -2,8 +2,8 @@
 using technical_test_sigma.Application.Interfaces.Customer;
 using technical_test_sigma.Application.Services.CustomerService;
 using technical_test_sigma.Infrastructure.Data;
-using technical_test_sigma.Infrastructure.Repositories.Customers;
 using DotNetEnv;
+using technical_test_sigma.Migrations.Repositories.Customers;
 
 var builder = WebApplication.CreateBuilder(args);
 

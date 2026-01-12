@@ -3,7 +3,7 @@ using technical_test_sigma.Application.Interfaces.Customer;
 using technical_test_sigma.Domain.Entities;
 using technical_test_sigma.Infrastructure.Data;
 
-namespace technical_test_sigma.Infrastructure.Repositories.Customers
+namespace technical_test_sigma.Migrations.Repositories.Customers
 {
     public class CustomerRepository : ICustomerRepository
     {
@@ -20,6 +20,12 @@ namespace technical_test_sigma.Infrastructure.Repositories.Customers
             await _context.SaveChangesAsync();
         }
 
+        public async Task DeleteAsync(CustomerEntity customer)
+        {
+            _context.Customers.Remove(customer);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task<CustomerEntity> GetByIdAsync(Guid id)
         {
             return await _context.Customers
@@ -33,5 +39,6 @@ namespace technical_test_sigma.Infrastructure.Repositories.Customers
             _context.Customers.Update(customer);
             await _context.SaveChangesAsync();
         }
+
     }
 }

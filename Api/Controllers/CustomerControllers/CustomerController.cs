@@ -46,5 +46,7 @@ namespace technical_test_sigma.Api.Controllers.CustomerControllers
             await _customerService.ChangeStatusAsync(id, dto.Active);
             return NoContent();
         }
+
+
     }
 }
